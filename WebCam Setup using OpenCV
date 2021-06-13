@@ -30,7 +30,7 @@ while i<20:
 cap.release()
 #cv2.destroyAllWindows()
 
-''' ********************************** Use the following the code separately. Don't merge it with the upper portion. ************************************
+''' ********************************** Use the following the code separately. Don't merge it with the upper portion. ************************************ '''
 
 # Controlling multiple webcams
 
