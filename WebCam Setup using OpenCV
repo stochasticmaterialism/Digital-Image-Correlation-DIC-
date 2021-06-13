@@ -1,0 +1,101 @@
+#Controlling a single webcam
+
+import cv2
+import matplotlib.pyplot as plt
+
+# Start the webcam
+cap=cv2.VideoCapture(0)
+
+#Check if the webcam is opened correctly
+if not cap.isOpened():
+    raise IOError("Cannot open webcam")
+
+i=0    
+while i<20:
+    # Ret returns a boolean value indicating whether a frame has been recorded or not, Ture implies a frame has been recorded, vice versa for False
+    # Frame records the image/ video from the webcam
+    ret,frame=cap.read()
+    # The frame from the webcam will get displayed on screen
+    #cv2.imshow('frame',frame)
+    frame=frame[90:410,:]
+    plt.imshow(frame)
+    plt.show()
+    # An loop is run. The number of iterations will depend on the number of frames we want to capture 
+    i+=1
+    
+    ''' The following code is to be used if the captured frames are required to be saved '''
+    #filename='frame'+str(i)+'.jpg'
+    #cv2.imwrite(filename,frame)
+    
+cap.release()
+#cv2.destroyAllWindows()
+
+
+import cv2
+import threading
+import matplotlib.pyplot as plt
+
+# Essentially, define one function which opens an opencv window and VideoCapture element. Then, create two threads with the camera ID and window name as inputs
+# This process is called Multithreading
+
+class camThread(threading.Thread):
+    def __init__(self, previewName, camID):
+        threading.Thread.__init__(self)
+        self.previewName=previewName
+        self.camID=camID
+    def run(self):
+        print("Starting "+self.previewName)
+        camPreview(self.previewName,self.camID)
+        
+# The following section is the same as single webcam controllling
+
+image=[]
+
+def camPreview(previewName,camID):
+    cv2.namedWindow(previewName)
+    cam=cv2.VideoCapture(camID)
+    if cam.isOpened():
+        rval,frame=cam.read()
+    else:
+        rval=False
+        
+    i=0
+    while i<10 and rval:
+        cv2.imshow(previewName,frame)
+        #rval,frame=cam.read()
+        #key=cv2.waitKey(20)
+        plt.imshow(frame)
+        plt.show()
+        i+=1
+        image.append(frame)   # Store the images in a list
+        #if key==27:  
+            #break
+    #cv2.destroyWindow(previewName)
+
+# Create threads as follows
+thread1 = camThread("WebCam 1", 0)
+thread2 = camThread("WebCam 2", 1)
+#thread3 = camThread("Camera 3", 2) # This will open any inbuilt webcam associated with the computer in use
+
+thread1.start()
+thread2.start()
+#thread3.start()
+print()
+print("Active threads", threading.activeCount())
+
+#print(len(image))
+
+# Retrieve the stored images
+for i in range(len(image)):
+    img=image[i][90:410,:]
+    plt.imshow(img)
+    plt.show()
+    
+    ''' The following code is to be used if the captured frames are required to be saved '''
+    if i%2==0:
+        filename='WebCam 1.'+'frame'+str(int(i/2+1))+'.jpg'
+    else:
+        filename='WebCam 2.'+'frame'+str(int(i/2+1))+'.jpg'
+    cv2.imwrite(filename,img)
+    
+# All images will be saved in C drive
