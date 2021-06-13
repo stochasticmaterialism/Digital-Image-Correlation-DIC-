@@ -1,4 +1,4 @@
-#Controlling a single webcam
+# Controlling a single webcam
 
 import cv2
 import matplotlib.pyplot as plt
@@ -30,6 +30,8 @@ while i<20:
 cap.release()
 #cv2.destroyAllWindows()
 
+
+# Controlling multiple webcams
 
 import cv2
 import threading
