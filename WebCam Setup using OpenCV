@@ -32,11 +32,10 @@ cap.release()
 
 ''' ********************************** Use the following the code separately. Don't merge it with the upper portion. ************************************ '''
 
-# Controlling multiple webcams
-
 import cv2
 import threading
 import matplotlib.pyplot as plt
+import numpy as np
 
 # Essentially, define one function which opens an opencv window and VideoCapture element. Then, create two threads with the camera ID and window name as inputs
 # This process is called Multithreading
@@ -53,6 +52,9 @@ class camThread(threading.Thread):
 # The following section is the same as single webcam controllling
 
 image=[]
+THRESHOLD=50
+IM_WIDTH=1280
+IM_HEIGHT=720
 
 def camPreview(previewName,camID):
     cv2.namedWindow(previewName)
@@ -63,10 +65,26 @@ def camPreview(previewName,camID):
         rval=False
         
     i=0
-    while i<10 and rval:
-        cv2.imshow(previewName,frame)
+    frame_number,prev_change_frame=0,0
+    is_dark=True
+    prev_tick=cv2.getTickCount()
+    while i<50 and rval:
+        frame_number+=1
+        #cv2.imshow(previewName,frame)
         #rval,frame=cam.read()
         #key=cv2.waitKey(20)
+        img=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
+
+        is_now_dark=np.average(img)<THRESHOLD
+
+        if is_dark!=is_now_dark:
+            is_dark=is_now_dark
+            new=cv2.getTickCount()
+
+        print("{:.3f} sec, {:.3f} frames".format((new-prev_tick)/cv2.getTickFrequency(),frame_number-prev_change_frame))
+        prev_tick=new
+
+        prev_change_frame=frame_number
         plt.imshow(frame)
         plt.show()
         i+=1
@@ -77,12 +95,12 @@ def camPreview(previewName,camID):
 
 # Create threads as follows
 thread1 = camThread("WebCam 1", 0)
-thread2 = camThread("WebCam 2", 1)
-#thread3 = camThread("Camera 3", 2) # This will open any inbuilt webcam associated with the computer in use
+#thread2 = camThread("WebCam 2", 1)
+thread3 = camThread("Camera 3", 2) # This will open any inbuilt webcam associated with the computer in use
 
 thread1.start()
-thread2.start()
-#thread3.start()
+#thread2.start()
+thread3.start()
 print()
 print("Active threads", threading.activeCount())
 
