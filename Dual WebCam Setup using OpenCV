@@ -74,6 +74,8 @@ cap2.release()
 print("Closing WebCam 2")
 cv2.destroyAllWindows()
 
+''' The following lines of code were written in a separate cell of Jupyter Notebook '''
+
 print('Number of Frames Captured = {}'.format(len(image)))
 print(' ')
 #print(len(name))
