@@ -101,6 +101,13 @@ cv2.destroyAllWindows()
 
 print('Number of Frames Captured = {}'.format(len(image)))
 print(' ')
+
+if (time1>time2):
+    print("Total execution time: {} s".format(time1-t))
+else:
+    print("Total execution time: {} s".format(time2-t))
+print(" ")
+
 #print(len(name))
 
 '''for i in range(len(image)):
