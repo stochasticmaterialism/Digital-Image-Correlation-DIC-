@@ -1,5 +1,6 @@
 import cv2
 import matplotlib.pyplot as plt
+import sys
 
 # Start the webcams
 cap1=cv2.VideoCapture(0)
@@ -17,6 +18,7 @@ else:
 
 i=0
 s='00000'
+image,name=[],[]
 
 while True: # Run an infinite loop which will terminate upon eyboard interupt
     # Ret returns a boolean value indicating whether a frame has been recorded or not, Ture implies a frame has been recorded, vice versa for False
@@ -27,27 +29,31 @@ while True: # Run an infinite loop which will terminate upon eyboard interupt
     if ret1:
         a=(int)(s)+(int)(i/2+1)
         filename=(str)(a)+'_1'
-        print(filename)
+        #print(filename)
+        cv2.imshow(filename,frame1)
         frame1=frame1[90:410,:] # To remove unnecessary backgroud from the frames
-        plt.imshow(frame1)
-        plt.show()
+        #plt.imshow(frame1)
+        #plt.show()
         i+=1
-        #cv2.imwrite(filename,frame1) # Frame saved to C drive
+        image.append(frame1)
+        name.append(filename)
     else:
         print('No frame captured')
     if ret2:
         a=(int)(s)+(int)(i/2+1)
         filename=(str)(a)+'_0'
-        print(filename)
+        #print(filename)
+        cv2.imshow(filename,frame2)
         frame2=frame2[90:410,:] # To remove unnecessary backgroud from the frames
-        plt.imshow(frame2)
-        plt.show()
+        #plt.imshow(frame2)
+        #plt.show()
         i+=1
-        #cv2.imwrite(filename,frame2) # Frame saved to C drive
+        image.append(frame2)
+        name.append(filename)
     else:
         print('No frame captured')
     
-    key=cv2.waitKey(1)
+    key=cv2.waitKey(27)
     if key==27 & 0xFF==ord('q'):
         break
 
@@ -55,3 +61,27 @@ cap1.release()
 print("Closing WebCam 1")
 cap2.release()
 print("Closing WebCam 2")
+
+print(len(image))
+print(len(name))
+
+'''for i in range(len(image)):
+    plt.imshow(image[i])
+    plt.show()'''
+    
+for i in range(len(name)):
+    if len(name[i])==3:
+        name[i]='0000'+name[i]
+    if len(name[i])==4:
+        name[i]='000'+name[i]
+    if len(name[i])==5:
+        name[i]='00'+name[i]
+    if len(name[i])==6:
+        name[i]='0'+name[i]
+    else:
+        continue
+    
+'''for i in range(len(image)):
+    print(name[i])'''
+
+# All images will be saved in C drive
