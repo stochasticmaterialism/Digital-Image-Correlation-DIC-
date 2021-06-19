@@ -1,0 +1,115 @@
+import cv2
+import matplotlib.pyplot as plt
+import os
+
+print("Please wait for the WebCams to start!")
+print(" ")
+
+# Start the webcams
+cap1=cv2.VideoCapture(0)
+cap2=cv2.VideoCapture(1)
+
+#Check if the webcams is opened correctly, a message will be displayed corresponding to opening status of both the webcams
+if not cap1.isOpened():
+    raise IOError("Cannot open WebCam1")
+else:
+    print('Opening WebCam1')
+if not cap2.isOpened():
+    raise IOError("Cannot open WebCam2")
+else:
+    print('Opening WebCam2')
+    
+print(" ")
+
+i=0
+image,name=[],[]
+
+print('Capturing Frames')
+print('Press the stop button of the Python scripting window when you are done!')
+print(" ")
+
+while True: # Run an infinite loop which will terminate upon keyboard interupt
+    # Ret returns a boolean value indicating whether a frame has been recorded or not, Ture implies a frame has been recorded, vice versa for False
+    # Frame records the image/ video from the webcam
+    try:
+        ret1,frame1=cap1.read()
+        ret2,frame2=cap2.read()
+        # The frame from the webcam will get displayed on screen
+        if ret1:
+            a=(int)(i/2+1)
+            filename=(str)(a)+'_1' # Naming the frames, xxxxx_1 for right WebCam
+            #print(filename)
+            cv2.imshow("Frame 1",frame1)
+            frame1=frame1[90:410,:] # To remove unnecessary backgroud from the frames
+            #plt.imshow(frame1)
+            #plt.show()
+            i+=1
+            image.append(frame1)
+            name.append(filename)
+        else:
+            print('No frame captured')
+        if ret2:
+            a=(int)(i/2+1)
+            filename=(str)(a)+'_0' # Naming the frames, xxxxx_0 for left WebCam
+            #print(filename)
+            cv2.imshow("Frame 2",frame2)
+            frame2=frame2[90:410,:] # To remove unnecessary backgroud from the frames
+            #plt.imshow(frame2)
+            #plt.show()
+            i+=1
+            image.append(frame2)
+            name.append(filename)
+        else:
+            print('No frame captured')
+    
+    except KeyboardInterrupt:  # Press the stop button of the Python scripting window
+        break
+
+print("Keyboard Interrupt Encountered")
+print(" ")
+
+cap1.release()
+print("Closing WebCam 1")
+cap2.release()
+print("Closing WebCam 2")
+cv2.destroyAllWindows()
+
+print('Number of Frames Captured = {}'.format(len(image)))
+print(' ')
+#print(len(name))
+
+'''for i in range(len(image)):
+    plt.imshow(image[i])
+    plt.show()'''
+    
+for i in range(len(name)):
+    if len(name[i])==3:
+        name[i]='0000'+name[i]+'.jpg'
+    if len(name[i])==4:
+        name[i]='000'+name[i]+'.jpg'
+    if len(name[i])==5:
+        name[i]='00'+name[i]+'.jpg'
+    if len(name[i])==6:
+        name[i]='0'+name[i]+'.jpg'
+    else:
+        continue
+    
+'''for i in range(len(image)):
+    print(name[i])'''
+
+''' Use the following line only if you need to save the captured frames '''
+c=input("Press Y to save the frames: ")
+if c=='Y' or c=='y':
+    print("Create a folder named Captured Frames in your C drive")
+    c1=input("Press Y once you have created the folder: ")
+    if c1=='Y' or c1=='y':
+        for i in range(len(image)):
+            path=r"C:\Users\DEBANSHU BANERJEE\Captured Frames"  # Change the path according to the computer that you are using 
+            cv2.imwrite(os.path.join(path,name[i]),image[i])
+        print(r"Frames have been successfully save at C:\Users\**********\Captured Frames")
+    else:
+        print("Captured Frames folder not found in C drive")
+else:
+    print("Code terminated!")
+    
+# All images will be saved in C drive
