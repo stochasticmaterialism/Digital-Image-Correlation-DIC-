@@ -1,6 +1,7 @@
 import cv2
 import matplotlib.pyplot as plt
 import os
+import time
 
 print("Please wait for the WebCams to start!")
 print(" ")
@@ -22,7 +23,9 @@ else:
 print(" ")
 
 i=0
-image,name=[],[]
+image,name,time_stamp,delay=[],[],[],[]
+t=time.perf_counter()
+#print(t)
 
 print('Capturing Frames')
 print('Press the stop button of the Python scripting window when you are done!')
@@ -46,6 +49,18 @@ while True: # Run an infinite loop which will terminate upon keyboard interupt
             i+=1
             image.append(frame1)
             name.append(filename)
+            time1=time.perf_counter()
+            #print("Time Stamp: {}".format(time1))
+            b=round((time1-t),3)
+            time_stamp.append(b)
+            if i==1:
+                #print("Delay: {}".format(0))
+                delay.append(0)
+            else:
+                #print("Delay: {}".format(time1-time2))
+                b=round(((time1-time2)*(10**3)),3)
+                delay.append(b)
+            #print(" ")
         else:
             print('No frame captured')
         if ret2:
@@ -59,6 +74,14 @@ while True: # Run an infinite loop which will terminate upon keyboard interupt
             i+=1
             image.append(frame2)
             name.append(filename)
+            time2=time.perf_counter()
+            #print("Time Stamp: {}".format(time2))
+            b=round((time2-t),3)
+            time_stamp.append(b)
+            #print("Delay: {}".format(time2-time1))
+            b=round(((time2-time1)*(10**3)),3)
+            delay.append(b)
+            #print(" ")
         else:
             print('No frame captured')
     
@@ -99,10 +122,19 @@ for i in range(len(name)):
 '''for i in range(len(image)):
     print(name[i])'''
 
+c=input("Press Y to view time stamp/ delay the frames: ")
+print(" ")
+if c=='Y' or c=='y':
+    print("Frame                   Time Stamp               Delay")
+    for i in range(len(image)):
+        print("{}             {} s                  {} ms".format(name[i],time_stamp[i],delay[i]))
+    print(' ')
+    
 ''' Use the following line only if you need to save the captured frames '''
 c=input("Press Y to save the frames: ")
 if c=='Y' or c=='y':
     print("Create a folder named Captured Frames in your C drive")
+    print(" ")
     c1=input("Press Y once you have created the folder: ")
     if c1=='Y' or c1=='y':
         for i in range(len(image)):
