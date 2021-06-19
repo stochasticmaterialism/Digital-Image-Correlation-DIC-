@@ -1,122 +1,57 @@
-# Controlling a single webcam
-
 import cv2
 import matplotlib.pyplot as plt
 
-# Start the webcam
-cap=cv2.VideoCapture(0)
+# Start the webcams
+cap1=cv2.VideoCapture(0)
+cap2=cv2.VideoCapture(1)
 
-#Check if the webcam is opened correctly
-if not cap.isOpened():
-    raise IOError("Cannot open webcam")
+#Check if the webcams is opened correctly, a message will be displayed corresponding to opening status of both the webcams
+if not cap1.isOpened():
+    raise IOError("Cannot open WebCam1")
+else:
+    print('Opening WebCam1')
+if not cap2.isOpened():
+    raise IOError("Cannot open WebCam2")
+else:
+    print('Opening WebCam2')
 
-i=0    
-while i<20:
+i=0
+s='00000'
+
+while True: # Run an infinite loop which will terminate upon eyboard interupt
     # Ret returns a boolean value indicating whether a frame has been recorded or not, Ture implies a frame has been recorded, vice versa for False
     # Frame records the image/ video from the webcam
-    ret,frame=cap.read()
+    ret1,frame1=cap1.read()
+    ret2,frame2=cap2.read()
     # The frame from the webcam will get displayed on screen
-    #cv2.imshow('frame',frame)
-    frame=frame[90:410,:]
-    plt.imshow(frame)
-    plt.show()
-    # An loop is run. The number of iterations will depend on the number of frames we want to capture 
-    i+=1
-    
-    ''' The following code is to be used if the captured frames are required to be saved '''
-    #filename='frame'+str(i)+'.jpg'
-    #cv2.imwrite(filename,frame)
-    
-cap.release()
-#cv2.destroyAllWindows()
-
-''' ********************************** Use the following the code separately. Don't merge it with the upper portion. ************************************ '''
-
-import cv2
-import threading
-import matplotlib.pyplot as plt
-import numpy as np
-
-# Essentially, define one function which opens an opencv window and VideoCapture element. Then, create two threads with the camera ID and window name as inputs
-# This process is called Multithreading
-
-class camThread(threading.Thread):
-    def __init__(self, previewName, camID):
-        threading.Thread.__init__(self)
-        self.previewName=previewName
-        self.camID=camID
-    def run(self):
-        print("Starting "+self.previewName)
-        camPreview(self.previewName,self.camID)
-        
-# The following section is the same as single webcam controllling
-
-image=[]
-THRESHOLD=50
-IM_WIDTH=1280
-IM_HEIGHT=720
-
-def camPreview(previewName,camID):
-    cv2.namedWindow(previewName)
-    cam=cv2.VideoCapture(camID)
-    if cam.isOpened():
-        rval,frame=cam.read()
-    else:
-        rval=False
-        
-    i=0
-    frame_number,prev_change_frame=0,0
-    is_dark=True
-    prev_tick=cv2.getTickCount()
-    while i<50 and rval:
-        frame_number+=1
-        #cv2.imshow(previewName,frame)
-        #rval,frame=cam.read()
-        #key=cv2.waitKey(20)
-        img=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
-
-        is_now_dark=np.average(img)<THRESHOLD
-
-        if is_dark!=is_now_dark:
-            is_dark=is_now_dark
-            new=cv2.getTickCount()
-
-        print("{:.3f} sec, {:.3f} frames".format((new-prev_tick)/cv2.getTickFrequency(),frame_number-prev_change_frame))
-        prev_tick=new
-
-        prev_change_frame=frame_number
-        plt.imshow(frame)
+    if ret1:
+        a=(int)(s)+(int)(i/2+1)
+        filename=(str)(a)+'_1'
+        print(filename)
+        frame1=frame1[90:410,:] # To remove unnecessary backgroud from the frames
+        plt.imshow(frame1)
         plt.show()
         i+=1
-        image.append(frame)   # Store the images in a list
-        #if key==27:  
-            #break
-    #cv2.destroyWindow(previewName)
-
-# Create threads as follows
-thread1 = camThread("WebCam 1", 0)
-#thread2 = camThread("WebCam 2", 1)
-thread3 = camThread("Camera 3", 2) # This will open any inbuilt webcam associated with the computer in use
-
-thread1.start()
-#thread2.start()
-thread3.start()
-print()
-print("Active threads", threading.activeCount())
-
-#print(len(image))
-
-# Retrieve the stored images
-for i in range(len(image)):
-    img=image[i][90:410,:]
-    plt.imshow(img)
-    plt.show()
-    
-    ''' The following code is to be used if the captured frames are required to be saved '''
-    if i%2==0:
-        filename='WebCam 1.'+'frame'+str(int(i/2+1))+'.jpg'
+        #cv2.imwrite(filename,frame1) # Frame saved to C drive
     else:
-        filename='WebCam 2.'+'frame'+str(int(i/2+1))+'.jpg'
-    cv2.imwrite(filename,img)
+        print('No frame captured')
+    if ret2:
+        a=(int)(s)+(int)(i/2+1)
+        filename=(str)(a)+'_0'
+        print(filename)
+        frame2=frame2[90:410,:] # To remove unnecessary backgroud from the frames
+        plt.imshow(frame2)
+        plt.show()
+        i+=1
+        #cv2.imwrite(filename,frame2) # Frame saved to C drive
+    else:
+        print('No frame captured')
     
-# All images will be saved in C drive
+    key=cv2.waitKey(1)
+    if key==27 & 0xFF==ord('q'):
+        break
+
+cap1.release()
+print("Closing WebCam 1")
+cap2.release()
+print("Closing WebCam 2")
