@@ -22,7 +22,7 @@ else:
     
 print(" ")
 
-i=0
+i,d1,d2=0,0,0
 image,name,time_stamp,delay=[],[],[],[]
 t=time.perf_counter()
 #print(t)
@@ -56,10 +56,12 @@ while True: # Run an infinite loop which will terminate upon keyboard interupt
             if i==1:
                 #print("Delay: {}".format(0))
                 delay.append(0)
+                d1=time1
             else:
                 #print("Delay: {}".format(time1-time2))
-                b=round(((time1-time2)*(10**3)),3)
+                b=round(((time1-d2)*(10**3)),3)
                 delay.append(b)
+                d1=time1
             #print(" ")
         else:
             print('No frame captured')
@@ -79,9 +81,10 @@ while True: # Run an infinite loop which will terminate upon keyboard interupt
             b=round((time2-t),3)
             time_stamp.append(b)
             #print("Delay: {}".format(time2-time1))
-            b=round(((time2-time1)*(10**3)),3)
+            b=round(((time2-d1)*(10**3)),3)
             delay.append(b)
             #print(" ")
+            d2=time2
         else:
             print('No frame captured')
     
@@ -102,10 +105,10 @@ cv2.destroyAllWindows()
 print('Number of Frames Captured = {}'.format(len(image)))
 print(' ')
 
-if (time1>time2):
-    print("Total execution time: {} s".format(time1-t))
+if (d1>d2):
+    print("Total execution time: {} s".format(d1-t))
 else:
-    print("Total execution time: {} s".format(time2-t))
+    print("Total execution time: {} s".format(d2-t))
 print(" ")
 
 #print(len(name))
