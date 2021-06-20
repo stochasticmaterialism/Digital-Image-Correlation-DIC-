@@ -1,4 +1,4 @@
-Digital Image Correlation (DIC) adapted for damage and crack mechanics
+#Digital Image Correlation (DIC) adapted for damage and crack mechanics
 
 Stereo System: It is a dual webcam system where both the cameras are considered as a single measurement system. This system is constructed to determine the relative orientation
 and position of an arbitrarily selected camera with respect to the remaining camera.
