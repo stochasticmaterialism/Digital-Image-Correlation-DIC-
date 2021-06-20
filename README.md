@@ -38,8 +38,5 @@ Step 11: The calibration pattern is rotated at different angles and the frames a
 
   
 
-![stereo 6](https://user-images.githubusercontent.com/79299979/122669335-7622cd00-d1da-11eb-8a43-618779e5b908.png)
-
-
-![stereo 7](https://user-images.githubusercontent.com/79299979/122669350-86d34300-d1da-11eb-9846-492614a300a4.png)
+![stereo 6](https://user-images.githubusercontent.com/79299979/122669335-7622cd00-d1da-11eb-8a43-618779e5b908.png) ![stereo 7](https://user-images.githubusercontent.com/79299979/122669350-86d34300-d1da-11eb-9846-492614a300a4.png)
 
