@@ -3,6 +3,28 @@ import matplotlib.pyplot as plt
 import os
 import time
 
+# Live Streaming WebCams for calibration
+
+#capture the webcam
+vid1=cv2.VideoCapture(0)
+vid2=cv2.VideoCapture(1)
+
+while True: #while true, read the camera
+    ret,frame=vid1.read()
+    ret1,frame1=vid2.read()
+
+    if ret and ret1:
+        cv2.imshow('WebCam1',frame)    #frame with name and variable of the camera 
+        cv2.imshow('WebCam2',frame1)
+
+    if cv2.waitKey(1) & 0xFF == ord('q'):      #to break the loop and terminate the program 
+        break
+
+vid1.release()
+vid2.release()
+
+# Capturing Frames from both WebCams
+
 print("Please wait for the WebCams to start!")
 print(" ")
 
