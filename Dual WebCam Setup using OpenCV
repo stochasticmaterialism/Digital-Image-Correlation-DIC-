@@ -58,6 +58,7 @@ while True: # Run an infinite loop which will terminate upon keyboard interupt
     # Frame records the image/ video from the webcam
     try:
         ret1,frame1=cap1.read()
+        time.sleep(0.2) # Add a time delay of 0.2 seconds to optimize the number of frames captured
         ret2,frame2=cap2.read()
         # The frame from the webcam will get displayed on screen
         if ret1:
