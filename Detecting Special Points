@@ -7,7 +7,7 @@ from skimage import transform
 
 #Load images
 
-img_dir=r"Place the path of the C drive in which you have save the captured frames using "
+img_dir=r"Place the path of the C drive in which you have save the captured frames using the code Dual WebCam Setup using OpenCV"
 data_path=os.path.join(img_dir,'*.jpg')
 files=glob.iglob(data_path)
 data=[]
