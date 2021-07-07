@@ -12,7 +12,7 @@ We need two webcams of 1080 p each. Connect them to a laptop where the working c
 ![Focus of WebCams](https://github.com/stochasticmaterialism/Digital-Image-Correlation-DIC-/blob/main/Images/Focus%20of%20WebCams.png?raw=true)  
 
 <p align="center">
-The orientation, pinhole position, focus etc. of the MC and the other webcam with respect to each other muct remain invariant throughout the calibration and measurement procedure. These parameters combined are known as intrinsic parameters. Both the webcams must be inclined at a minimum angle of 10 degrees and maximum angle of 30 degrees with respect to the optical axis. The calibration pattern is rotated at different angles and the frames are captured by both the webcams. The parameters of rotation and translation constitute the extrinsic parameters.
+The orientation, pinhole position, focus etc. of the MC and the other webcam with respect to each other must remain invariant throughout the calibration and measurement procedure. These parameters combined are known as intrinsic parameters. Both the webcams must be inclined at a minimum angle of 10 degrees and maximum angle of 30 degrees with respect to the optical axis. The calibration pattern is rotated at different angles and the frames are captured by both the webcams. The parameters of rotation and translation constitute the extrinsic parameters.
 </p>
 
 ![Extrinsic Parameters](https://github.com/stochasticmaterialism/Digital-Image-Correlation-DIC-/blob/main/Images/Extrinsic%20Parameters.png?raw=true)
