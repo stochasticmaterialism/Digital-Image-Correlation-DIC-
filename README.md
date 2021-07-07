@@ -34,3 +34,9 @@ Step 9: The orientation, pinhole position, focus etc. of the MC and the WebCam 2
 Step 10: Both the webcams must be inclined at a minimum angle of 10 degrees and maximum angle of 30 degrees with respect to the optical axis. Views from both the cameras must be identical.
 
 Step 11: The calibration pattern is rotated at different angles and the frames are captured by both the webcams. The parameters of rotation and translation constitute the extrinsic parameters.
+
+## Calculations
+
+<img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
+
+![formula](https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1)
