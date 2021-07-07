@@ -1,4 +1,4 @@
-# <p align="center">Digital Image Correlation (DIC) Adapted for Damage Mechanics and Crack</p>
+# <p align="center">Digital Image Correlation (DIC) Adapted for Damage Mechanics and Cracks</p>
 
 ## <p align="center">This work in a nutshell</p>
 <p align="center">
