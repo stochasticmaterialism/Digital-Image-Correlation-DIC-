@@ -27,7 +27,7 @@ Step 7: The orientation and position of the WCS with respect to the MC is determ
 
 Step 8: The orientation and position of the other webcam is defined relative to the MC.
 
-![Extrinsic Parameters](https://github.com/stochasticmaterialism/Digital-Image-Correlation-DIC-/blob/patch-1/Images/Extrinsic%20Parameters.pnghttps://github.com/stochasticmaterialism/Digital-Image-Correlation-DIC-/blob/patch-1/Images/Extrinsic%20Parameters.png?raw=true)
+![Extrinsic Parameters](https://github.com/stochasticmaterialism/Digital-Image-Correlation-DIC-/blob/patch-1/Images/Extrinsic%20Parameters.png?raw=true)
 
 Step 9: The orientation, pinhole position, focus etc. of the MC and the WebCam 2 with respect to each other muct remain invariant throughout the calibration and measurement procedure. These parameters combined are known as intrinsic parameters.
 
