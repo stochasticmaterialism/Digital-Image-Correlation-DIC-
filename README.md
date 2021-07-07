@@ -18,5 +18,5 @@ The orientation, pinhole position, focus etc. of the MC and the other webcam wit
 ![Extrinsic Parameters](https://github.com/stochasticmaterialism/Digital-Image-Correlation-DIC-/blob/main/Images/Extrinsic%20Parameters.png?raw=true)
 
 <p align="center">
-We now detect the special points in the calibration pattern using the code "Detecting Special Points" for all the captured frames. With this done, we are able to mark x and y axes for all the frames irrespectie of their rotations. Now, our aim is to determine the intrinsic and extrinsic parameters for both WebCams and derive the relations between them as elaborated in "Calibration Formulae".
+We now detect the special points in the calibration pattern using the code "Detecting Special Points" following a template matching technique for all the captured frames. With this done, we are able to mark x and y axes for all the frames irrespectie of their rotations. Now, our aim is to determine the intrinsic and extrinsic parameters for both WebCams and derive the relations between them as elaborated in "Calibration Formulae".
 </p>
