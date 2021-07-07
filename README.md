@@ -25,7 +25,7 @@ Step 7: The orientation and position of the WCS with respect to the MC is determ
 
 Step 8: The orientation and position of the other webcam is defined relative to the MC.
 
-![Stereo System Setup](https://drive.google.com/file/d/1tuLUKGyMgwdkf1P387B7GDCWcbPAdlsN/view?usp=sharing)  
+![Focus of WebCams](https://github.com/stochasticmaterialism/Digital-Image-Correlation-DIC-/blob/main/Images/Focus%20of%20WebCams.png?raw=true)  
 
 Step 9: The orientation, pinhole position, focus etc. of the MC and the other webcam with respect to each other muct remain invariant throughout the calibration and measurement procedure. These parameters combined are known as intrinsic parameters.
 
