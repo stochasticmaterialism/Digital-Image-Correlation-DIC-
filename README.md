@@ -1,6 +1,5 @@
 # <p align="center">Digital Image Correlation (DIC) Adapted for Damage Mechanics and Cracks</p>
 
-## <p align="center">This work in a nutshell</p>
 <p align="center">
 Stereo system is a dual webcam system where both the cameras are considered as a single measurement system. This system is constructed to determine the relative orientation and position of an arbitrarily selected camera with respect to the other camera.
 </p>
