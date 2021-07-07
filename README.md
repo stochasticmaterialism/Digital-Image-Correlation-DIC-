@@ -11,7 +11,9 @@ Step 1: We need two webcams of 1080 p each. Connect them to a laptop where the w
 
 Step 2: Make sure the webcams are attachned to a fixed support (in our case we have used two tripods).
 
-Step 3: Both the webcams are focused on a single target, i.e., calibration pattern. This ensures a common world coordinate system is used to define the extrinsic parameters.
+Step 3: Both the webcams are focused on a single target, i.e., calibration pattern as shown in the image below. This ensures a common world coordinate system is used to define the extrinsic parameters.
+
+![Focus of WebCams](https://github.com/stochasticmaterialism/Digital-Image-Correlation-DIC-/blob/patch-1/Images/Focus%20of%20WebCams.png?raw=true)
 
 Step 4: Normal to the centre of the calibration pattern must lie midway between the two webcams.
 
