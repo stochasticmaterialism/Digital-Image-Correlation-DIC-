@@ -33,4 +33,4 @@ Step 10: Both the webcams must be inclined at a minimum angle of 10o and maximum
 
 Step 11: The calibration pattern is rotated at different angles and the frames are captured by both the webcams. The parameters of rotation and translation (R0-1, R0-2, t0-1 and t0-2) constitute the extrinsic parameters.
 
-![Different Coordinate System](https://drive.google.com/file/d/1WXSpBVu78kYFYN0Q7MLR7LzlvgqZpqUD/view?usp=sharing)
+![Extrinsic Parameters](https://github.com/stochasticmaterialism/Digital-Image-Correlation-DIC-/blob/main/Images/Extrinsic%20Parameters.png?raw=true)
