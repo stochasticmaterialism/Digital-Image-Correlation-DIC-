@@ -9,7 +9,7 @@ It is a dual webcam system where both the cameras are considered as a single mea
 
 Step 1: We need two webcams of 1080 p each. Connect them to a laptop where the working code "Dual WebCam Setup using OpenCV" will be executed.
 
-Step 2: Make sure the webcams are attachned to a fixed support (in our case we have used two tripods).
+Step 2: Make sure the webcams are attached to a fixed support (in our case we have used two tripods).
 
 Step 3: Both the webcams are focused on a single target, i.e., calibration pattern as shown in the image below. This ensures a common world coordinate system is used to define the extrinsic parameters.
 
