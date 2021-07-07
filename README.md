@@ -2,14 +2,11 @@
 
 ## Stereo System
 <p align="center">
-It is a dual webcam system where both the cameras are considered as a single measurement system. This system is constructed to determine the relative orientation and position of an arbitrarily selected camera with respect to the remaining camera.
+It is a dual webcam system where both the cameras are considered as a single measurement system. This system is constructed to determine the relative orientation and position of an arbitrarily selected camera with respect to the other camera.
 </p>
 
 # Steps for a stero system setup
-
-Step 1: We need two webcams of 1080 p each. Connect them to a laptop where the working code "Dual WebCam Setup using OpenCV" will be executed.
-
-Step 2: Make sure the webcams are attachned to a fixed support (in our case we have used two tripods).
+We need two webcams of 1080 p each. Connect them to a laptop where the working code "Dual WebCam Setup using OpenCV" will be executed. Make sure the webcams are attachned to a fixed support (in our case we have used two tripods).
 
 Step 3: Both the webcams are focused on a single target, i.e., calibration pattern. This ensures a common world coordinate system is used to define the extrinsic parameters.
 
