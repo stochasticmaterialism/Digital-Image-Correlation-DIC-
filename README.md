@@ -19,9 +19,9 @@ Step 4: Normal to the centre of the calibration pattern must lie midway between 
 
 Step 5: For the calibration pattern:
 
-A specific point on the calibration pattern is selected as the origin of the world coordinate system (WCS), OW.
-A specific line of points on the pattern is set as the XW axis and a perpendicular line of points in the pattern is set as the YW axis.
-Step 6: Now one of the webcams is arbitrarily selected as the master camera (MC), in our case it is camera 1.
+A specific point on the calibration pattern is selected as the origin of the world coordinate system (WCS).
+A specific line of points on the pattern is set as the X axis and a perpendicular line of points in the pattern is set as the Y axis.
+Step 6: Now one of the webcams is arbitrarily selected as the master camera (MC), in our case it is WebCam 1.
 
 Step 7: The orientation and position of the WCS with respect to the MC is determined.
 
@@ -29,7 +29,7 @@ Step 8: The orientation and position of the other webcam is defined relative to 
 
 ![Stereo System Setup](https://drive.google.com/file/d/1tuLUKGyMgwdkf1P387B7GDCWcbPAdlsN/view?usp=sharing)  
 
-Step 9: The orientation, pinhole position, focus etc. of the MC and the other webcam with respect to each other muct remain invariant throughout the calibration and measurement procedure. These parameters combined are known as intrinsic parameters.
+Step 9: The orientation, pinhole position, focus etc. of the MC and the WebCam 2 with respect to each other muct remain invariant throughout the calibration and measurement procedure. These parameters combined are known as intrinsic parameters.
 
 Step 10: Both the webcams must be inclined at a minimum angle of 10o and maximum angle of 30o with respect to the optical axis.
 
