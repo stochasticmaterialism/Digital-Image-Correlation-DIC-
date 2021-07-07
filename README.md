@@ -31,6 +31,6 @@ Step 8: The orientation and position of the other webcam is defined relative to 
 
 Step 9: The orientation, pinhole position, focus etc. of the MC and the WebCam 2 with respect to each other muct remain invariant throughout the calibration and measurement procedure. These parameters combined are known as intrinsic parameters.
 
-Step 10: Both the webcams must be inclined at a minimum angle of 10 degrees and maximum angle of 30 degrees with respect to the optical axis.
+Step 10: Both the webcams must be inclined at a minimum angle of 10 degrees and maximum angle of 30 degrees with respect to the optical axis. Views from both the cameras must be identical.
 
 Step 11: The calibration pattern is rotated at different angles and the frames are captured by both the webcams. The parameters of rotation and translation constitute the extrinsic parameters.
