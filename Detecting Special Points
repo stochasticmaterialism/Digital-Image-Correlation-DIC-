@@ -10,7 +10,7 @@ import cv2
 
 #Load images
 
-img_dir=r"Path where you have saved the frames using the code Dual WebCam Control"
+img_dir=r"Path where you have saved the frames using the code Dual WebCam Setup using OpenCV"
 data_path=os.path.join(img_dir,'*.jpg')
 files=glob.iglob(data_path)
 data,name=[],[]
@@ -58,9 +58,9 @@ for i in range(len(data)):
             rect=plt.Rectangle((y,x),20,20,color='r',fc='none')
             #print(rect)
             a=rect.xy[0]
-            a=(a+(a+15))/2
+            a=(a+(a+10))/2
             b=rect.xy[1]
-            b=(b+(b+14))/2
+            b=(b+(b+10))/2
             c=plt.Circle((a,b),3,color='r',fc='r')
             plt.gca().add_patch(c)
     plt.show()
