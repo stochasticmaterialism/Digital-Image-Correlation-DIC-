@@ -4,40 +4,63 @@ from skimage.io import imread, imshow
 from skimage.color import rgb2gray
 from skimage.feature import match_template, peak_local_max
 from skimage import transform
+import os
+import glob
+import cv2
 
 #Load images
 
-img_dir=r"Place the path of the C drive in which you have save the captured frames using the code Dual WebCam Setup using OpenCV"
+img_dir=r"Path where you have saved the frames using the code Dual WebCam Control"
 data_path=os.path.join(img_dir,'*.jpg')
 files=glob.iglob(data_path)
-data=[]
+data,name=[],[]
 for f in files:
     img=cv2.imread(f)
     img1=cv2.cvtColor(img,cv2.COLOR_RGB2GRAY)
     data.append(img1)
+    #print(f)
+    a=f[43:50]
+    #print(a)
+    name.append(a)
     
 #print(len(data))
 '''for i in range(len(data)):
     plt.imshow(data[i],cmap='gray')
     plt.show()'''
 
-img=cv2.imread("Calibration Template.jpg")
-img=cv2.cvtColor(img,cv2.COLOR_RGB2GRAY)
+#Load Templates
 
-def find_template(image):
-    #fig,ax=plt.subplots(1,2,figsize=(14,10))
-    #template=img
-    #template=image[y:y+y_width,x:x+x_width]
-    #ax[0].imshow(img,cmap='gray')
-    result=match_template(image,template)
-    #ax[1].imshow(result,cmap='gray');
+img_dir=r"Path of the folder where you will be saving your templates for object detection"
+data_path=os.path.join(img_dir,'*.jpg')
+files=glob.iglob(data_path)
+t=[]
+for f in files:
+    img=cv2.imread(f)
+    img1=cv2.cvtColor(img,cv2.COLOR_RGB2GRAY)
+    t.append(img1)
+    
+#print(len(t))
+'''for i in range(len(t)):
+    plt.imshow(t[i],cmap='gray')
+    plt.show()'''
+    
+def find_template(image1,image2):
+    result=match_template(image1,image2)
     coor_x,coor_y=np.unravel_index(np.argmax(result),result.shape)
     return coor_x,coor_y,template,result
+
 for i in range(len(data)):
-    x,y,template,result=find_template(data[i])
+    print("Frame: {}".format(name[i]))
     plt.imshow(data[i],cmap='gray')
-    template_width,template_height=template.shape
-    for x,y in peak_local_max(result,threshold_abs=0.92):
-        rect=plt.Rectangle((y,x),template_height,template_width,color='r',fc='none')
-        plt.gca().add_patch(rect);
+    for j in range(len(t)):
+        x,y,template,result=find_template(data[i],t[j])
+        for x,y in peak_local_max(result,threshold_abs=0.93):
+            rect=plt.Rectangle((y,x),20,20,color='r',fc='none')
+            #print(rect)
+            a=rect.xy[0]
+            a=(a+(a+15))/2
+            b=rect.xy[1]
+            b=(b+(b+14))/2
+            c=plt.Circle((a,b),3,color='r',fc='r')
+            plt.gca().add_patch(c)
     plt.show()
