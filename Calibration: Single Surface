@@ -71,6 +71,18 @@ def calibration_1(location1,location2,location3,threshold1,threshold2):
 
     '''plt.imshow(img)
     plt.show()'''
+    
+    print("Distortion corrected frames")
+
+    for i in range(len(data)):
+        img=data[i]
+        img = spline_filter1d(img, axis=0)
+        img = spline_filter1d(img, axis=1)
+        
+        print(name[i])
+        plt.imshow(data[i],cmap='gray')
+        plt.imshow(img,cmap='gray')
+        plt.show()
 
     cord1,cord2=[],[]
 
