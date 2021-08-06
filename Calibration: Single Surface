@@ -1,6 +1,9 @@
 # Function for template matching
 
 def find_template(image1,image2):
+    from skimage.feature import match_template
+    import numpy as np
+    
     result=match_template(image1,image2)
     coor_x,coor_y=np.unravel_index(np.argmax(result),result.shape)
     return coor_x,coor_y,image2,result
