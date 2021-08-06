@@ -81,6 +81,7 @@ def calibration_1(location1,location2,location3,threshold1,threshold2):
         
         print(name[i])
         plt.imshow(data[i],cmap='gray')
+        plt.show()
         plt.imshow(img,cmap='gray')
         plt.show()
 
