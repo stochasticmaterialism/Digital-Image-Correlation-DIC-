@@ -206,12 +206,3 @@ def capturing_frames(stamp):
     # All images will be saved in C drive
     
     return None
-
-# Defining main function
-
-def main():
-    webcam_adjustment()
-    capturing_frames(0.2)
-    
-if __name__ == "__main__":
-    main()
