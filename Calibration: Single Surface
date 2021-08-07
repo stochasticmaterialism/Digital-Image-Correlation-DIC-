@@ -10,7 +10,7 @@ def find_template(image1,image2):
 
 # Function to perform stereo calibration using one surface
 
-def calibration_1(location1,location2,location3,threshold1,threshold2):
+def calibration_1(location1,location2,location3,threshold1,threshold2,type1,type2):
     import numpy as np
     import matplotlib.pyplot as plt
     from skimage.io import imread, imshow
@@ -31,7 +31,7 @@ def calibration_1(location1,location2,location3,threshold1,threshold2):
     #Load images
 
     img_dir=location1
-    data_path=os.path.join(img_dir,'*.jpg')
+    data_path=os.path.join(img_dir,type1)
     files=glob.iglob(data_path)
     data,name=[],[]
     for f in files:
@@ -51,7 +51,7 @@ def calibration_1(location1,location2,location3,threshold1,threshold2):
     #Load the calibration templates for special points
 
     img_dir=location2
-    data_path=os.path.join(img_dir,'*.jpg')
+    data_path=os.path.join(img_dir,type2)
     files=glob.iglob(data_path)
     t=[]
     for f in files:
@@ -85,6 +85,17 @@ def calibration_1(location1,location2,location3,threshold1,threshold2):
         plt.imshow(img,cmap='gray')
         plt.show()
 
+    for i in range(len(data)):
+        img=data[i]
+        img=spline_filter1d(img,axis=0)
+        img=spline_filter1d(img,axis=1)
+        '''print(name[i])
+        plt.imshow(data[i],cmap='gray')
+        plt.show()
+        plt.imshow(img,cmap='gray')
+        plt.show()'''
+        data[i]=img
+        
     cord1,cord2=[],[]
 
     #Detecting normal points
@@ -904,14 +915,3 @@ def calibration_1(location1,location2,location3,threshold1,threshold2):
     print(webcam2[3])
     
     return cord1,special,webcam1,webcam2
-    
-# Defining main function
-
-def main():
-    location1=r"C:\Users\DEBANSHU BANERJEE\Captured Frames"
-    location2=r"C:\Users\DEBANSHU BANERJEE\Calibration Templates"
-    location3="Calibration Template.jpg"
-    point,special_points,parameters1,parameters2=calibration_1(location1,location2,location3,0.7,0.95)
-    
-if __name__ == "__main__":
-    main()
