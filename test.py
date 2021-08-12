@@ -1,3 +1,5 @@
+from DIC_LIPEC import *
+
 def main():
     location1=r"C:\Users\DEBANSHU BANERJEE\Captured Framez"
     location2=r"C:\Users\DEBANSHU BANERJEE\Calibration Templates"
