@@ -8,6 +8,27 @@ Python package to perform stereo calibration for Digital Image Correlation (DIC)
 * Function SingleSurfaceCalibration() is used for stereo calibration involving only one calibration pattern, i.e., a single grid.
 * Function DoubleSurfaceCalibration() is used for stereo calibration involving two calibration patterns, i.e., two grids.
 
+# Quickstart
+
+If you know what you're doing, then this section is for you. Otherwise, you should go to the `Getting Started` section.
+
+#### Windows:
+
+```
+sudo apt install python3-pip python3-venv
+git clone https://github.com/ilyasst/pydictoolkit.git
+cd pydictoolkit
+python3 -m venv .env
+source .env/bin/activate
+pip install -r requirements.txt
+python main.py -h
+```
+
+Basic usage:
+```
+python main.py -d "./deck.yaml"
+```
+
 # Getting started
 
 ## Installation
