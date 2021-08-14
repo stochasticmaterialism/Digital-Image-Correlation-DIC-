@@ -1,6 +1,6 @@
 # Function to capture frames from both the WebCams simultaneously
 
-def capturing_frames(stamp):
+def CaptureFrames(stamp):
 
     import cv2
     import matplotlib.pyplot as plt
