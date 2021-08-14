@@ -1,16 +1,6 @@
-# Function for template matching
-
-def find_template(image1,image2):
-    from skimage.feature import match_template
-    import numpy as np
-    
-    result=match_template(image1,image2)
-    coor_x,coor_y=np.unravel_index(np.argmax(result),result.shape)
-    return coor_x,coor_y,image2,result
-
 # Function to perform stereo calibration using one surface
 
-def calibration_1(location1,location2,location3,threshold1,threshold2,type1,type2):
+def SingleSurfaceCalibration(location1,type1,location2,type2,location3,threshold1,threshold2):
     import numpy as np
     import matplotlib.pyplot as plt
     from skimage.io import imread, imshow
@@ -39,7 +29,9 @@ def calibration_1(location1,location2,location3,threshold1,threshold2,type1,type
         img1=cv2.cvtColor(img,cv2.COLOR_RGB2GRAY)
         data.append(img1)
         #print(f)
-        a=f[43:50]
+        l1=len(f)-11
+        l2=len(f)-4
+        a=f[l1:l2]
         #print(a)
         name.append(a)
     
@@ -72,30 +64,6 @@ def calibration_1(location1,location2,location3,threshold1,threshold2,type1,type
     '''plt.imshow(img)
     plt.show()'''
     
-    print("Distortion corrected frames")
-
-    for i in range(len(data)):
-        img=data[i]
-        img = spline_filter1d(img, axis=0)
-        img = spline_filter1d(img, axis=1)
-        
-        print(name[i])
-        plt.imshow(data[i],cmap='gray')
-        plt.show()
-        plt.imshow(img,cmap='gray')
-        plt.show()
-
-    for i in range(len(data)):
-        img=data[i]
-        img=spline_filter1d(img,axis=0)
-        img=spline_filter1d(img,axis=1)
-        '''print(name[i])
-        plt.imshow(data[i],cmap='gray')
-        plt.show()
-        plt.imshow(img,cmap='gray')
-        plt.show()'''
-        data[i]=img
-        
     cord1,cord2=[],[]
 
     #Detecting normal points
@@ -104,7 +72,8 @@ def calibration_1(location1,location2,location3,threshold1,threshold2,type1,type
         #print("Frame: {}".format(name[i]))
         temp=[]
         #plt.imshow(data[i],cmap='gray')
-        x,y,template,result=find_template(data[i],img)
+        result=match_template(data[i],img)
+        x,y=np.unravel_index(np.argmax(result),result.shape)
         for x,y in peak_local_max(result,threshold_abs=threshold1):
             rect=plt.Rectangle((y,x),20,20,color='r',fc='none')
             #print(rect)
@@ -128,7 +97,8 @@ def calibration_1(location1,location2,location3,threshold1,threshold2,type1,type
         temp=[]
         #plt.imshow(data[i],cmap='gray')
         for j in range(len(t)):
-            x,y,template,result=find_template(data[i],t[j])
+            result=match_template(data[i],t[j])
+            x,y=np.unravel_index(np.argmax(result),result.shape)
             for x,y in peak_local_max(result,threshold_abs=threshold2):
                 rect=plt.Rectangle((y,x),20,20,color='r',fc='none')
                 #print(rect)
@@ -144,9 +114,6 @@ def calibration_1(location1,location2,location3,threshold1,threshold2,type1,type
     
     #print(len(cord1))
     #print(len(cord2))
-
-    '''for i in range(len(cord2)):
-        print(cord2[i])'''
     
     w=data[0].shape[0]/2
     h=data[0].shape[1]/2
@@ -191,15 +158,15 @@ def calibration_1(location1,location2,location3,threshold1,threshold2,type1,type
     rejected,location=0,[]
 
     for i in range(len(cord1)):
-        if (len(cord1[i])==140 and len(special[i])==3 and special[i][0][0]<h and special[i][0][1]<w and special[i][1][0]>h and special[i][1][1]<w and special[i][2][0]>h and special[i][2][1]>w):
+        if len(cord1[i])==140 and len(special[i])==3 and special[i][0][0]<h and special[i][0][1]<w and special[i][1][0]>h and special[i][1][1]<w and special[i][2][0]>h and special[i][2][1]>w:
             print("Frame: {}".format(name[i]))
             plt.imshow(data[i],cmap='gray')
             for j in range(len(cord1[i])):
-                d=plt.Circle((cord1[i][j][0],cord1[i][j][1]),3,color='g',fc='g')
+                d=plt.Circle((cord1[i][j][0],cord1[i][j][1]),2,color='g',fc='g')
                 plt.gca().add_patch(d)
                 plt.axis("off")
             for j in range(len(special[i])):
-                d=plt.Circle((special[i][j][0],special[i][j][1]),3,color='r',fc='r')
+                d=plt.Circle((special[i][j][0],special[i][j][1]),2,color='r',fc='r')
                 plt.gca().add_patch(d)
                 plt.axis("off")
             plt.show()

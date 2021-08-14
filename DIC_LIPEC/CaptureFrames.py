@@ -1,45 +1,6 @@
-# Function to adjust both WebCams to ensure that both of them have identical views 
-
-def webcam_adjustment():
-    
-    import cv2
-    import matplotlib.pyplot as plt
-    import os
-    import time
-    import numpy as np
-
-    # Live Streaming WebCams for adjusting the views
-
-    # Starting the WebCams
-    vid1=cv2.VideoCapture(0)
-    vid2=cv2.VideoCapture(1)
-    print("Opening both WebCams for live stream")
-    print(" ")
-
-    while True: # while true, read the camera
-        try: # Live streaming will continue as long as no keyboard interruption is encountered 
-            ret1,frame1=vid1.read()
-            ret2,frame2=vid2.read()
-    
-            if ret1 and ret2: # Determines whether the WebCams are able to live stream 
-                cv2.imshow('WebCam1',frame1)     
-                cv2.imshow('WebCam2',frame2)
-            else: # If any one of the WebCams fail to live stream, display a message
-                print("WebCams are unable to live stream! Please check your setup or restart the live stream.")
-
-        except KeyboardInterrupt:  # Press the stop button of the Python scripting window to end live stream
-            break
-
-    print("Closing live stream")
-    print(" ")
-    vid1.release()
-    vid2.release()
-    
-    return None
-
 # Function to capture frames from both the WebCams simultaneously
 
-def capturing_frames(stamp):
+def CaptureFrames(stamp):
 
     import cv2
     import matplotlib.pyplot as plt
