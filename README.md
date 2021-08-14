@@ -99,7 +99,9 @@ arr8: Array with the intrinsic and extrinsic parameters for right webcam for gri
 ```
 
 # Guide
-* 
+* Images folder consists of the templates used to detect normal and special points
+* Numerical aspects of Calibration explains the mathematical background to carry out calibration
+* test.py is used to test the package once installation is complete
 
 # Disclaimer
 
