@@ -64,17 +64,6 @@ def SingleSurfaceCalibration(location1,type1,location2,type2,location3,threshold
     '''plt.imshow(img)
     plt.show()'''
     
-    for i in range(len(data)):
-        img=data[i]
-        img=spline_filter1d(img,axis=0)
-        img=spline_filter1d(img,axis=1)
-        #print(name[i])
-        '''plt.imshow(data[i],cmap='gray')
-        plt.show()
-        plt.imshow(img,cmap='gray')
-        plt.show()'''
-        data[i]=img
-    
     cord1,cord2=[],[]
 
     #Detecting normal points
