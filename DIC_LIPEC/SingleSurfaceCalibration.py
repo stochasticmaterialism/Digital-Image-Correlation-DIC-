@@ -158,7 +158,7 @@ def SingleSurfaceCalibration(location1,type1,location2,type2,location3,threshold
     rejected,location=0,[]
 
     for i in range(len(cord1)):
-        if len(cord1[i])==140 and len(special[i])==3 and special[i][0][0]<h and special[i][0][1]<w and special[i][1][0]>h and special[i][1][1]<w and special[i][2][0]>h and special[i][2][1]>w:
+        if len(cord1[i])==140 and len(special[i])==3:
             print("Frame: {}".format(name[i]))
             plt.imshow(data[i],cmap='gray')
             for j in range(len(cord1[i])):
