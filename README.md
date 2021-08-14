@@ -103,6 +103,11 @@ arr8: Array with the intrinsic and extrinsic parameters for right webcam for gri
 * Numerical aspects of Calibration explains the mathematical background to carry out calibration
 * test.py is used to test the package once installation is complete
 
+## Contribute ?
+
+Maybe you need something for your own project, maybe you found a mistake or something you could improve and feeling like helping, in any case, we'll be happy to get in touch. Please leave us an Issue, or a Pull Request (we welcome those!).
+
+
 # Disclaimer
 
 This software is for educational and research purposes only. Use it at your own risks.
