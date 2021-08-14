@@ -16,17 +16,15 @@ If you know what you're doing, then this section is for you. Otherwise, you shou
 
 ```
 sudo apt install python3-pip python3-venv
-git clone https://github.com/ilyasst/pydictoolkit.git
-cd pydictoolkit
-python3 -m venv .env
-source .env/bin/activate
+git clone https://github.com/stochasticmaterialism/Digital-Image-Correlation-DIC-/tree/DIC_LIPEC/DIC_LIPEC
 pip install -r requirements.txt
-python main.py -h
+cd DIC
+python setup.py install
 ```
 
 Basic usage:
 ```
-python main.py -d "./deck.yaml"
+from DIC_LIPEC import *
 ```
 
 # Getting started
@@ -44,6 +42,7 @@ pip install -r requirements.txt
 ```
 # Function description
 ```yaml
+from DIC_LIPEC import CaptureFrames
 CaptureFrames(stamp)
 
 Input
@@ -54,6 +53,7 @@ Displays the total time duration for which the webcams were on along with their 
 
 ```
 ```yaml
+from DIC_LIPEC import SingleSurfaceCalibration
 arr1,arr2,arr3,arr4=SingleSurfaceCalibration(location1,type1,location2,type2,location3,threshold1,threshold2)
 
 Input
@@ -74,6 +74,7 @@ arr4: Array with the intrinsic and extrinsic parameters for right webcam
 ```
 
 ```yaml
+from DIC_LIPEC import DoubleSurfaceCalibration
 arr1,arr2,arr3,arr4,arr5,arr6,arr7,arr8=DoubleSurfaceCalibration(location1,type1,location2,type2,location3,threshold1,threshold2)
 
 Input
