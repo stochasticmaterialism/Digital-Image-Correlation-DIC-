@@ -1,6 +1,18 @@
 # DIC_LIPEC
 Python package to perform stereo calibration for Digital Image Correlation (DIC)
 
+# The Package in Brief
+
+- [x] A calibration patern that can be implemented in real life scenario
+- [x] A dual webcam setup ensuring the same view from both webcams and focused at a particular point in the calibration pattern
+- [x] Capture frames of the calibration pattern using the stereo system 
+- [x] Frames must be on .jpg or .png format
+- [ ] The package works with .tiff format images
+- [x] Detect points from the captured frames using template matching algorithm and recognise a grid pattern
+- [ ] Template matching works on all captured frames
+- [x] Use the detected grid and points for stereo calibration
+- [x] Determine intrinsic and extrinsic parameters for both webcams
+
 # Main features
 
 * The package is built using Python 3.7.6 consisting of three different functions.
@@ -72,6 +84,8 @@ arr3: Array with the intrinsic and extrinsic parameters for left webcam
 arr4: Array with the intrinsic and extrinsic parameters for right webcam
 
 ```
+
+# Functions expected to be available in the next version
 
 ```yaml
 from DIC_LIPEC import DoubleSurfaceCalibration
